@@ -11,7 +11,14 @@ var taskFormHandler = function() {
     // this variable targets an input button, with a name of task-name and looks only for the value of the input
     var taskTypeInput = document.querySelector("select[name='task-type']").value;
     // this variable gets the calue of the selevct dropdown's picked option element in the html. Then updates the selector element with a name of task type with the value of the variable
+
+    // validating the input
+    if (!taskNameInput || !taskTypeInput) {
+        alert("You need to fill out the task form!");
+        return false;
+    }
     
+    formEl.reset();
     // package up data as an object
   var taskDataObj = {
     name: taskNameInput,
