@@ -3,6 +3,7 @@ var formEl = document.querySelector("#task-form");
 var tasksToDoEl = document.querySelector("#tasks-to-do");
 // this variable edits whatever in the html has an id of tasks-to-do
 var taskIdCounter = 0;
+var pageContentEl = document.querySelector("#page-content");
 
 
 var taskFormHandler = function() {
@@ -111,6 +112,23 @@ var taskFormHandler = function() {
 
  formEl.addEventListener("submit", taskFormHandler);
 // this listens for a submit button to be click, then runs the taskFormHandler function
+pageContentEl.addEventListener("click", taskButtonHandler);
+
+var taskButtonHandler = function(event) {
+    console.log(event.target);
+
+    if (event.target.matches(".delete-btn")) {
+        // get the element's task id
+        var taskId = event.target.getAttribute("data-task-id");
+        deleteTask(taskId);
+    }
+};
+
+var deleteTask = function(taskId) {
+    // this creates the taskSelected variable to target the html task item element that has a data-task-id equal to the arguement passed in from taskId
+    var taskSelected = document.querySelector(".task-item[data-task-id='" + taskId + "']");
+    taskSelected.remove();
+  };
 
 
 
